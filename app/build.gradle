@@ -1,0 +1,59 @@
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    defaultConfig {
+        // Stops the Gradle plugin’s automatic rasterization of vectors
+        vectorDrawables.generatedDensities = []
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+dependencies {
+    implementation project(path: ':domain')
+    implementation project(path: ':common')
+    implementation project(path: ':data')
+
+    // Android
+    implementation androidxLibs.appcompat
+    implementation androidxLibs.annotation
+    implementation androidxLibs.recyclerview
+    implementation androidxLibs.constraintlayout
+
+    implementation androidktxLibs.core
+    implementation androidktxLibs.fragment
+
+    implementation lifecycleLibs.extensions
+    kapt lifecycleLibs.compiler
+    implementation lifecycleLibs.viewmodel
+    implementation lifecycleLibs.livedata
+    implementation lifecycleLibs.reactivestreams
+
+    // Navigation
+    implementation navigationLibs.fragment
+    implementation navigationLibs.ui
+
+    // DI
+    implementation koinLibs.android
+    implementation koinLibs.viewmodel
+    implementation koinLibs.scope
+
+    // ReactiveX
+    implementation reactivexLibs.rxjava
+    implementation reactivexLibs.rxandroid
+    implementation reactivexLibs.rxkotlin
+    implementation reactivexLibs.replayingshare
+
+    // other
+    implementation otherLibs.material
+    implementation otherLibs.timber
+    implementation otherLibs.threetenabp
+    implementation otherLibs.picasso
+}

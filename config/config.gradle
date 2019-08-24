@@ -1,0 +1,56 @@
+apply from: "${project.rootDir}/config/dependencies.gradle"
+
+configure(subprojects.findAll {
+    it.name != "domain"
+}) { project ->
+    if (project.name == "app") {
+        apply plugin: 'com.android.application'
+    } else {
+        apply plugin: 'com.android.library'
+    }
+
+    apply plugin: 'kotlin-android'
+    apply plugin: 'kotlin-kapt'
+
+    android {
+        compileSdkVersion versions.targetsdk
+
+        defaultConfig {
+            minSdkVersion versions.minsdk
+            targetSdkVersion versions.targetsdk
+
+            versionCode 1
+            versionName "1.0"
+
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+
+            kotlinOptions {
+                jvmTarget = JavaVersion.VERSION_1_8
+            }
+
+            sourceSets {
+                main.java.srcDirs += 'src/main/kotlin'
+                test.java.srcDirs += 'src/test/kotlin'
+            }
+
+            kapt {
+                correctErrorTypes = true
+            }
+
+            buildTypes {
+                release {
+                    minifyEnabled false
+                }
+            }
+
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        }
+    }
+
+    dependencies {
+        implementation kotlinLibs.stdlib
+    }
+}

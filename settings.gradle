@@ -1,0 +1,2 @@
+include ':app', ':common', ':data', ':domain'
+rootProject.name='Pipedrive Person Details'

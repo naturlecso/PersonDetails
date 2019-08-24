@@ -1,0 +1,32 @@
+dependencies {
+    implementation project(path: ':domain')
+
+    // Kotlin
+    implementation kotlinLibs.serialization
+
+    // Cache
+    implementation roomLibs.core
+    kapt roomLibs.compiler
+    implementation roomLibs.rxjava
+
+    // Networking
+    implementation retrofitLibs.core
+    implementation retrofitLibs.rxjava
+    implementation retrofitLibs.serialization
+    implementation retrofitLibs.logger
+
+    // DI
+    implementation koinLibs.android
+    implementation koinLibs.viewmodel
+    implementation koinLibs.scope
+
+    // ReactiveX
+    implementation reactivexLibs.rxjava
+    implementation reactivexLibs.rxandroid
+    implementation reactivexLibs.rxkotlin
+    implementation reactivexLibs.replayingshare
+
+    // other
+    implementation otherLibs.timber
+    implementation otherLibs.threetenabp
+}
