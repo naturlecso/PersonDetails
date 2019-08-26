@@ -1,3 +1,14 @@
+apply plugin: 'kotlinx-serialization'
+
+def keysProperties = new Properties()
+keysProperties.load(new FileInputStream("${project.rootDir}/config/keys.properties"))
+
+android {
+    defaultConfig {
+        buildConfigField "String", "PIPEDRIVE_API_KEY", keysProperties['pipedriveApiKey']
+    }
+}
+
 dependencies {
     implementation project(path: ':domain')
 

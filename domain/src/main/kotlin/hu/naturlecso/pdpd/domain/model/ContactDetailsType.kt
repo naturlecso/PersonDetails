@@ -1,5 +1,5 @@
 package hu.naturlecso.pdpd.domain.model
 
-enum class ContactDetailType {
+enum class ContactDetailsType {
     EMAIL, PHONE
 }

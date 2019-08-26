@@ -5,7 +5,7 @@ data class Person(
     val name: String,
     val owner: Owner,
     val organization: Organization?,
-    val contactDetails: List<ContactDetail>?,
+    val contactDetails: List<ContactDetails>?,
     val openDealsCount: Int,
     val closedDealsCount: Int,
     val wonDealsCount: Int,
