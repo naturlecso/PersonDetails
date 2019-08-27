@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pipedrive Person Details</string>
+
+    <string name="splash_label">Person Details</string>
 </resources>

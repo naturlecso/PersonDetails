@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import hu.naturlecso.pdpd.R
 import hu.naturlecso.pdpd.common.navigation.NavigationCommand
 import hu.naturlecso.pdpd.common.navigation.Navigator
@@ -27,21 +26,19 @@ class MainActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.navHostFragment)
 
-        setupActionBarWithNavController(navController)
-
         disposable = navigator.navigationEvents()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
                     is NavigationCommand.To -> navController.navigate(it.directions)
-                    is NavigationCommand.BackTo -> navController.popBackStack(
-                        it.destinationId,
-                        false
-                    )
+                    is NavigationCommand.BackTo -> {
+                        navController.popBackStack(it.destinationId, false)
+                        navController.navigate(it.destinationId)
+                    }
                     is NavigationCommand.Back -> navController.navigateUp()
                     is NavigationCommand.ToRoot -> navController.popBackStack(
-                        navController.graph.startDestination, false
+                        R.id.placeholder, false
                     )
                 }
             }
