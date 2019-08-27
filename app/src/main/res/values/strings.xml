@@ -2,4 +2,5 @@
     <string name="app_name">Pipedrive Person Details</string>
 
     <string name="splash_label">Person Details</string>
+    <string name="person_list_open_deals">%d open deals</string>
 </resources>

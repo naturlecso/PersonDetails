@@ -1,11 +1,17 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="toolbarStyle">@style/ElevatedToolbar</item>
+        <item name="android:toolbarStyle">@style/ElevatedToolbar</item>
+    </style>
+
+    <style name="ElevatedToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:elevation">4dp</item>
+        <item name="android:background">@color/background</item>
     </style>
 
 </resources>

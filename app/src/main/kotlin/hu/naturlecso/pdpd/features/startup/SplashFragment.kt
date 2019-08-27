@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import hu.naturlecso.pdpd.R
@@ -28,15 +27,5 @@ class SplashFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.refreshPersonsAndNavigateCommand.execute()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        (activity as AppCompatActivity).supportActionBar?.hide()
-    }
-
-    override fun onStop() {
-        (activity as AppCompatActivity).supportActionBar?.show()
-        super.onStop()
     }
 }

@@ -26,7 +26,11 @@ class DefaultPersonStore(
                     .map { mapPersonDataModelToDomainModel(it) } }
                 .toList()
         }
-        .map { it.apply { sortBy { person -> person.id } } }
+
+        .map { it.apply {
+            sortBy { person -> person.name }
+            sortByDescending { person -> person.openDealsCount } }
+        }
         .distinctUntilChanged()
 
     override fun get(id: Int): Flowable<Person> = Flowables.combineLatest(

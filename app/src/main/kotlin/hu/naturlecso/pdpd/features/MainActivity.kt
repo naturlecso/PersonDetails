@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     is NavigationCommand.Back -> navController.navigateUp()
                     is NavigationCommand.ToRoot -> navController.popBackStack(
-                        R.id.placeholder, false
+                        R.id.personsFragment, false
                     )
                 }
             }
