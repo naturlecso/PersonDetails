@@ -2,8 +2,8 @@ package hu.naturlecso.pdpd.features.persons.details
 
 import androidx.databinding.ObservableField
 import hu.naturlecso.pdpd.common.model.RowViewModel
-import hu.naturlecso.pdpd.domain.model.ContactDetails
+import hu.naturlecso.pdpd.domain.model.Contact
 
-class ContactListItemViewModel(contact: ContactDetails) : RowViewModel<ContactDetails>(contact) {
+class ContactListItemViewModel(contact: Contact) : RowViewModel<Contact>(contact) {
     val contact = ObservableField(contact)
 }

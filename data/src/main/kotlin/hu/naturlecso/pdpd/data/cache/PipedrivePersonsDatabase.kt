@@ -7,7 +7,7 @@ import androidx.room.TypeConverters
 @Database(
     version = 1,
     exportSchema = false,
-    entities = [PersonDataModel::class, ContactDetailsDataModel::class]
+    entities = [PersonDataModel::class, ContactDataModel::class]
 )
 @TypeConverters(Converters::class)
 abstract class PipedrivePersonsDatabase : RoomDatabase() {

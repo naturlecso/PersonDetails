@@ -19,8 +19,8 @@ data class PersonApiModel(
     @SerialName("closed_deals_count") val closedDealsCount: Int,
     @SerialName("won_deals_count") val wonDealsCount: Int,
     @SerialName("lost_deals_count") val lostDealsCount: Int,
-    val phone: List<ContactDetailsApiModel>,
-    val email: List<ContactDetailsApiModel>
+    val phone: List<ContactApiModel>,
+    val email: List<ContactApiModel>
 )
 
 @Serializable
@@ -36,7 +36,7 @@ data class OrganizationApiModel(
 )
 
 @Serializable
-data class ContactDetailsApiModel(
+data class ContactApiModel(
     val label: String? = null,
     val value: String,
     val primary: Boolean

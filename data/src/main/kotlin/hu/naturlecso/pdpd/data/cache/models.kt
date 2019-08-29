@@ -18,19 +18,19 @@ data class PersonDataModel(
     val lostDealsCount: Int
 ) {
     @Ignore
-    var contactDetails: List<ContactDetailsDataModel> = emptyList()
+    var contacts: List<ContactDataModel> = emptyList()
 }
 
 @Entity
-data class ContactDetailsDataModel(
+data class ContactDataModel(
     @PrimaryKey val id: String,
-    val type: ContactDetailsTypeDataModel,
+    val type: ContactTypeDataModel,
     val label: String?,
     val value: String,
     val primary: Boolean,
     val personId: Int
 )
 
-enum class ContactDetailsTypeDataModel {
+enum class ContactTypeDataModel {
     PHONE, EMAIL
 }

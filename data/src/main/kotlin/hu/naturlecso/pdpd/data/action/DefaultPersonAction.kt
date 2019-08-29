@@ -1,11 +1,11 @@
 package hu.naturlecso.pdpd.data.action
 
 import hu.naturlecso.pdpd.data.BuildConfig
-import hu.naturlecso.pdpd.data.api.ContactDetailsApiModel
+import hu.naturlecso.pdpd.data.api.ContactApiModel
 import hu.naturlecso.pdpd.data.api.PersonApiModel
 import hu.naturlecso.pdpd.data.api.PipedrivePersonsApiService
-import hu.naturlecso.pdpd.data.cache.ContactDetailsDataModel
-import hu.naturlecso.pdpd.data.cache.ContactDetailsTypeDataModel
+import hu.naturlecso.pdpd.data.cache.ContactDataModel
+import hu.naturlecso.pdpd.data.cache.ContactTypeDataModel
 import hu.naturlecso.pdpd.data.cache.PersonDao
 import hu.naturlecso.pdpd.data.cache.PersonDataModel
 import hu.naturlecso.pdpd.domain.action.PersonAction
@@ -37,13 +37,13 @@ class DefaultPersonAction(
             closedDealsCount = apiModel.closedDealsCount,
             wonDealsCount = apiModel.wonDealsCount,
             lostDealsCount = apiModel.lostDealsCount
-        ).apply { contactDetails = mapPhones(apiModel) + mapEmails(apiModel) }
+        ).apply { contacts = mapPhones(apiModel) + mapEmails(apiModel) }
 
-    private fun mapContactDetailsApiModelToDataModel(
-        apiModel: ContactDetailsApiModel,
+    private fun mapContactApiModelToDataModel(
+        apiModel: ContactApiModel,
         personId: Int,
-        type: ContactDetailsTypeDataModel) =
-        ContactDetailsDataModel(
+        type: ContactTypeDataModel) =
+        ContactDataModel(
             id = UUID.randomUUID().toString(),
             type = type,
             label = apiModel.label,
@@ -52,17 +52,17 @@ class DefaultPersonAction(
             personId = personId
         )
 
-    private fun mapPhones(apiModel: PersonApiModel): List<ContactDetailsDataModel> {
+    private fun mapPhones(apiModel: PersonApiModel): List<ContactDataModel> {
         return apiModel.phone
-            .filter { contactDetails -> contactDetails.value.isNotEmpty() }
-            .map { contactDetails -> mapContactDetailsApiModelToDataModel(
-                contactDetails, apiModel.id, ContactDetailsTypeDataModel.PHONE) }
+            .filter { contact -> contact.value.isNotEmpty() }
+            .map { contact -> mapContactApiModelToDataModel(
+                contact, apiModel.id, ContactTypeDataModel.PHONE) }
     }
 
-    private fun mapEmails(apiModel: PersonApiModel): List<ContactDetailsDataModel> {
+    private fun mapEmails(apiModel: PersonApiModel): List<ContactDataModel> {
         return apiModel.email
-            .filter { contactDetails -> contactDetails.value.isNotEmpty() }
-            .map { contactDetails -> mapContactDetailsApiModelToDataModel(
-                contactDetails, apiModel.id, ContactDetailsTypeDataModel.EMAIL) }
+            .filter { contact -> contact.value.isNotEmpty() }
+            .map { contact -> mapContactApiModelToDataModel(
+                contact, apiModel.id, ContactTypeDataModel.EMAIL) }
     }
 }

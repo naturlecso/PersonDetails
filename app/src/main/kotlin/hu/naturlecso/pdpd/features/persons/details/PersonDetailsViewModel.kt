@@ -3,7 +3,7 @@ package hu.naturlecso.pdpd.features.persons.details
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import com.jakewharton.rx.ReplayingShare
-import hu.naturlecso.pdpd.domain.model.ContactDetailsType
+import hu.naturlecso.pdpd.domain.model.ContactType
 import hu.naturlecso.pdpd.domain.store.PersonStore
 import io.reactivex.processors.BehaviorProcessor
 
@@ -25,13 +25,13 @@ class PersonDetailsViewModel(
     val email = LiveDataReactiveStreams.fromPublisher(
         personFlowable
             .map {person ->
-                val hasEmail = person.contactDetails
+                val hasEmail = person.contact
                     .map { it.type }
-                    .any { it == ContactDetailsType.EMAIL }
+                    .any { it == ContactType.EMAIL }
 
                 return@map if (hasEmail) {
-                    person.contactDetails
-                        .filter { it.type == ContactDetailsType.EMAIL }
+                    person.contact
+                        .filter { it.type == ContactType.EMAIL }
                         .first { it.primary }
                         .value
                 } else {
@@ -42,13 +42,13 @@ class PersonDetailsViewModel(
 
     val contacts = LiveDataReactiveStreams.fromPublisher(
         personFlowable.map { person ->
-            person.contactDetails
+            person.contact
                 .filter { it.primary }
                 .sortedBy { it.type }
         }
     )
 
     val showContacts = LiveDataReactiveStreams.fromPublisher(
-        personFlowable.map { it.contactDetails.isNotEmpty() }
+        personFlowable.map { it.contact.isNotEmpty() }
     )
 }

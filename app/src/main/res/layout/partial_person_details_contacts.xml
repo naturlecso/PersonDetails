@@ -6,11 +6,11 @@
     <data>
 
         <import type="java.util.List"/>
-        <import type="hu.naturlecso.pdpd.domain.model.ContactDetails"/>
+        <import type="hu.naturlecso.pdpd.domain.model.Contact"/>
 
         <variable
             name="contacts"
-            type="List&lt;ContactDetails>"/>
+            type="List&lt;Contact>"/>
 
         <variable
             name="listVisible"

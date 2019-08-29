@@ -1,7 +1,7 @@
 package hu.naturlecso.pdpd.domain.model
 
-data class ContactDetails(
-    val type: ContactDetailsType,
+data class Contact(
+    val type: ContactType,
     val label: String?,
     val value: String,
     val primary: Boolean

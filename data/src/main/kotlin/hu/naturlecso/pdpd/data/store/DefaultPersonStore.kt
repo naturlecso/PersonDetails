@@ -1,10 +1,10 @@
 package hu.naturlecso.pdpd.data.store
 
-import hu.naturlecso.pdpd.data.cache.ContactDetailsDataModel
+import hu.naturlecso.pdpd.data.cache.ContactDataModel
 import hu.naturlecso.pdpd.data.cache.PersonDao
 import hu.naturlecso.pdpd.data.cache.PersonDataModel
-import hu.naturlecso.pdpd.domain.model.ContactDetails
-import hu.naturlecso.pdpd.domain.model.ContactDetailsType
+import hu.naturlecso.pdpd.domain.model.Contact
+import hu.naturlecso.pdpd.domain.model.ContactType
 import hu.naturlecso.pdpd.domain.model.Organization
 import hu.naturlecso.pdpd.domain.model.Owner
 import hu.naturlecso.pdpd.domain.model.Person
@@ -20,9 +20,9 @@ class DefaultPersonStore(
     override fun getList(): Flowable<List<Person>> = personDao.getAll()
         .flatMapSingle { personList ->
             Flowable.fromIterable(personList)
-                .flatMap { personData -> personDao.getContactDetailsByPerson(personData.id)
+                .flatMap { personDataModel -> personDao.getContactsByPerson(personDataModel.id)
                     .take(1)
-                    .map { contactDetailsData -> personData.apply { contactDetails = contactDetailsData } }
+                    .map { contactDataModel -> personDataModel.apply { contacts = contactDataModel } }
                     .map { mapPersonDataModelToDomainModel(it) } }
                 .toList()
         }
@@ -34,8 +34,8 @@ class DefaultPersonStore(
 
     override fun get(id: Int): Flowable<Person> = Flowables.combineLatest(
         personDao.get(id),
-        personDao.getContactDetailsByPerson(id)
-    ) { personData, contactDetailsData -> personData.apply { contactDetails = contactDetailsData } }
+        personDao.getContactsByPerson(id)
+    ) { personDataModel, contactDataModel -> personDataModel.apply { contacts = contactDataModel } }
         .map { mapPersonDataModelToDomainModel(it) }
         .subscribeOn(Schedulers.io())
 
@@ -45,16 +45,16 @@ class DefaultPersonStore(
             name = dataModel.name,
             owner = Owner(dataModel.ownerName, dataModel.ownerEmail),
             organization = mapOrganization(dataModel),
-            contactDetails = dataModel.contactDetails.map { mapContactDetailsDataModelToDomainModel(it) },
+            contact = dataModel.contacts.map { mapContactDataModelToDomainModel(it) },
             openDealsCount = dataModel.openDealsCount,
             closedDealsCount = dataModel.closedDealsCount,
             wonDealsCount = dataModel.wonDealsCount,
             lostDealsCount = dataModel.lostDealsCount
         )
 
-    private fun mapContactDetailsDataModelToDomainModel(dataModel: ContactDetailsDataModel) =
-        ContactDetails(
-            type = ContactDetailsType.valueOf(dataModel.type.name),
+    private fun mapContactDataModelToDomainModel(dataModel: ContactDataModel) =
+        Contact(
+            type = ContactType.valueOf(dataModel.type.name),
             label = dataModel.label,
             value = dataModel.value,
             primary = dataModel.primary

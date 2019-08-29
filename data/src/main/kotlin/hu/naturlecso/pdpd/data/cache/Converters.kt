@@ -5,8 +5,8 @@ import androidx.room.TypeConverter
 class Converters {
 
     @TypeConverter
-    fun contactDetailsTypeDataModelToDb(value: ContactDetailsTypeDataModel?) = value?.name
+    fun contactTypeDataModelToDb(value: ContactTypeDataModel?) = value?.name
 
     @TypeConverter
-    fun contactDetailsTypeDataModelFromDb(value: String) = ContactDetailsTypeDataModel.valueOf(value)
+    fun contactTypeDataModelFromDb(value: String) = ContactTypeDataModel.valueOf(value)
 }
