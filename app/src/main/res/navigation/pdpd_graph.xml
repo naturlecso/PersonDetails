@@ -20,6 +20,21 @@
     <fragment
         android:id="@+id/personsFragment"
         android:name="hu.naturlecso.pdpd.features.persons.list.PersonsFragment"
-        android:label="PersonsFragment" />
+        android:label="PersonsFragment" >
+        <action
+            android:id="@+id/toDetails"
+            app:destination="@id/personDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/personDetailsFragment"
+        android:name="hu.naturlecso.pdpd.features.persons.details.PersonDetailsFragment"
+        android:label="PersonDetailsFragment">
+        <argument
+            android:name="personId"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+    </fragment>
 
 </navigation>

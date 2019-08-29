@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="java.util.List"/>
+        <import type="hu.naturlecso.pdpd.domain.model.ContactDetails"/>
+
+        <variable
+            name="contacts"
+            type="List&lt;ContactDetails>"/>
+
+        <variable
+            name="listVisible"
+            type="Boolean"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPadding="@dimen/margin_normal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:text="@string/person_details_contacts"
+                android:textAppearance="?android:attr/textAppearanceListItem" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/contactList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/margin_small"
+                android:paddingEnd="@dimen/margin_small"
+                android:visibility="@{listVisible}"
+                bind:items="@{contacts}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_normal"
+                android:text="@string/person_details_contacts_empty"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:gravity="center_horizontal"
+                android:visibility="@{!listVisible}"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

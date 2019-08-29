@@ -2,5 +2,20 @@
     <string name="app_name">Pipedrive Person Details</string>
 
     <string name="splash_label">Person Details</string>
+
     <string name="person_list_open_deals">%d open deals</string>
+
+    <string name="person_details_organization">Organization</string>
+    <string name="person_details_owner">Owner</string>
+
+    <string name="person_details_deals">Deals</string>
+    <string name="person_details_deals_won">Won: %d</string>
+    <string name="person_details_deals_lost">Lost: %d</string>
+    <string name="person_details_deals_open">Open: %d</string>
+    <string name="person_details_deals_closed">Closed: %d</string>
+
+    <string name="person_details_contacts">Contacts</string>
+    <string name="person_details_contacts_empty">No contacts!</string>
+    <string name="person_details_contact_format">%s (%s)</string>
+
 </resources>

@@ -18,7 +18,7 @@ data class PersonDataModel(
     val lostDealsCount: Int
 ) {
     @Ignore
-    var contactDetails: List<ContactDetailsDataModel>? = null
+    var contactDetails: List<ContactDetailsDataModel> = emptyList()
 }
 
 @Entity

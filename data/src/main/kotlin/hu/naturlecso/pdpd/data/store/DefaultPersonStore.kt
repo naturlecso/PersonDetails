@@ -26,7 +26,6 @@ class DefaultPersonStore(
                     .map { mapPersonDataModelToDomainModel(it) } }
                 .toList()
         }
-
         .map { it.apply {
             sortBy { person -> person.name }
             sortByDescending { person -> person.openDealsCount } }
@@ -46,11 +45,11 @@ class DefaultPersonStore(
             name = dataModel.name,
             owner = Owner(dataModel.ownerName, dataModel.ownerEmail),
             organization = mapOrganization(dataModel),
-            contactDetails = dataModel.contactDetails?.map { mapContactDetailsDataModelToDomainModel(it) },
+            contactDetails = dataModel.contactDetails.map { mapContactDetailsDataModelToDomainModel(it) },
             openDealsCount = dataModel.openDealsCount,
             closedDealsCount = dataModel.closedDealsCount,
             wonDealsCount = dataModel.wonDealsCount,
-            lostDealCount = dataModel.lostDealsCount
+            lostDealsCount = dataModel.lostDealsCount
         )
 
     private fun mapContactDetailsDataModelToDomainModel(dataModel: ContactDetailsDataModel) =
