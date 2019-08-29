@@ -22,7 +22,6 @@ fun ImageView.bindGravatarToImageView(email: String?) {
 
         Picasso.get()
             .load("https://www.gravatar.com/avatar/$hash?s=$size")
-            .networkPolicy(NetworkPolicy.OFFLINE)
             .into(this)
     }
 }
