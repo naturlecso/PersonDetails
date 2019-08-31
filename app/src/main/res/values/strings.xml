@@ -2,6 +2,9 @@
     <string name="app_name">Pipedrive Person Details</string>
 
     <string name="splash_label">Person Details</string>
+    <string name="splash_error_offline">The device is offline!</string>
+    <string name="splash_error_refresh">Unable to refresh persons!</string>
+    <string name="splash_error_action">CONTINUE</string>
 
     <string name="person_list_open_deals">%d open deals</string>
 

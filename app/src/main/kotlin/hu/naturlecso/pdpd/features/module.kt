@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val featureModule = module {
-    viewModel { SplashViewModel(get(), get()) }
+    viewModel { SplashViewModel(get(), get(), get(), get()) }
     viewModel { PersonsViewModel(get(), get()) }
     viewModel { PersonDetailsViewModel(get()) }
 }

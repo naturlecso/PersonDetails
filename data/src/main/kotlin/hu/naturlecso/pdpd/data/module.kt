@@ -18,6 +18,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import java.util.concurrent.TimeUnit
 
 val dataModule = module {
     val baseUrl = "https://api.pipedrive.com/v1/"
@@ -32,6 +33,9 @@ val dataModule = module {
     single<Interceptor> { HttpLoggingInterceptor().apply { this.level = HttpLoggingInterceptor.Level.BODY } }
 
     single { OkHttpClient.Builder()
+        .connectTimeout(5, TimeUnit.SECONDS)
+        .readTimeout(5, TimeUnit.SECONDS)
+        .writeTimeout(5, TimeUnit.SECONDS)
         .cache(get())
         .addInterceptor(get())
         .build() }

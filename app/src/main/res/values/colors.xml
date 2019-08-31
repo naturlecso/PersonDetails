@@ -7,4 +7,5 @@
     <color name="colorAccent">#545452</color>
 
     <color name="divider">#e8e8e8</color>
+    <color name="error">#d32f2f</color>
 </resources>
